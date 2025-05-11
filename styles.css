@@ -155,13 +155,13 @@ body, button, a {
 /* Card Container */
 .card-container {
     position: relative;
-    max-width: min(800px, 92%);
+    max-width: min(800px, 94%);
     margin: 50px auto;
-    padding: clamp(1rem, 5vw, 3rem);
+    padding: clamp(1.5rem, 5vw, 3rem);
     text-align: center;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    -webkit-backdrop-filter: blur(10px);
     border-radius: 20px;
     box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
     border: 1px solid rgba(255, 255, 255, 0.18);
@@ -369,12 +369,26 @@ div[style*="display: none"] {
 /* iPhone 14 and Newer Specific Styles */
 @media only screen and (min-device-width: 390px) and (max-device-width: 844px) and (-webkit-min-device-pixel-ratio: 3) {
     .card-container {
-        margin: max(30px, var(--safe-area-inset-top)) auto;
-        width: 92%;
+        margin: max(20px, var(--safe-area-inset-top)) auto;
+        width: 88%;
+        padding: clamp(1.5rem, 4vw, 2rem);
+    }
+
+    .message {
+        padding: 0 clamp(0.8rem, 3vw, 1.5rem);
+        font-size: clamp(1.4rem, 4.5vw, 1.8rem);
+        line-height: 1.4;
     }
 
     .title {
-        margin-top: max(10px, var(--safe-area-inset-top));
+        margin-top: max(15px, var(--safe-area-inset-top));
+        font-size: clamp(2.2rem, 7vw, 3rem);
+        margin-bottom: 1.5rem;
+    }
+
+    .gallery-btn {
+        width: min(90%, 280px);
+        padding: clamp(0.8rem, 3vw, 1.2rem) clamp(1.2rem, 4vw, 2rem);
     }
 
     .fancybox__container {
