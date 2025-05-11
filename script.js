@@ -108,12 +108,12 @@ function openGallery() {
         {
             src: "assets/IMG_3092.JPG",
             type: "image",
-            caption: "Child with tinfoil hat"
+            caption: "Thanks for the hat mom!"
         },
         {
             src: "assets/IMG_3093.jpg",
             type: "image",
-            caption: "Astronaut costume photo"
+            caption: "Elijah felt out of this world halloween 2024"
         }
     ], {
         animated: true,
