@@ -1,0 +1,384 @@
+/* Base Styles */
+:root {
+    --lavender: #E6E6FA;
+    --baby-pink: #FFC0CB;
+    --sky-blue: #87CEEB;
+    --safe-area-inset-bottom: env(safe-area-inset-bottom);
+    --safe-area-inset-top: env(safe-area-inset-top);
+}
+
+/* Add viewport-aware units for better mobile support */
+@supports (padding: max(0px)) {
+    body {
+        padding-top: max(20px, var(--safe-area-inset-top));
+        padding-bottom: max(20px, var(--safe-area-inset-bottom));
+    }
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: linear-gradient(
+        45deg,
+        var(--lavender),
+        var(--baby-pink),
+        var(--sky-blue)
+    );
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    font-family: 'Aguafina Script', bold;
+    overflow-x: hidden;
+}
+
+/* Gradient Animation */
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Sparkle Effect */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="white" opacity="0.5"/></svg>');
+    animation: sparkle 3s linear infinite;
+}
+
+@keyframes sparkle {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-100px); }
+}
+
+/* Custom Cursor */
+body, button, a {
+    cursor: none !important;
+}
+
+.cursor {
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, 
+        rgba(255, 255, 255, 1) 0%, 
+        rgba(255, 192, 203, 0.8) 50%, 
+        rgba(255, 182, 193, 0) 100%
+    );
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 99999;
+    mix-blend-mode: screen;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    visibility: visible;
+}
+
+.cursor::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 5px;
+    height: 5px;
+    background: white;
+    border-radius: 50%;
+    animation: sparkle-pulse 1s ease-in-out infinite alternate;
+}
+
+@keyframes sparkle-pulse {
+    from {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+        box-shadow: 
+            0 0 0 0 rgba(255, 255, 255, 0.7),
+            0 0 0 1px rgba(255, 192, 203, 0.5),
+            0 0 15px rgba(255, 255, 255, 0.5);
+    }
+    to {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0.8;
+        box-shadow: 
+            0 0 10px 2px rgba(255, 255, 255, 0.9),
+            0 0 20px 5px rgba(255, 192, 203, 0.7),
+            0 0 25px rgba(255, 255, 255, 0.6);
+    }
+}
+
+/* Fairy Container */
+.fairy-container {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    top: 10px;
+    right: -60px;
+    transform: rotate(-15deg);
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.fairy-container .tenor-gif-embed {
+    width: 100% !important;
+    height: 100% !important;
+    pointer-events: none;
+}
+
+/* Hide Tenor attribution */
+.fairy-container .tenor-gif-embed::after {
+    display: none !important;
+}
+
+.fairy {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(10px, -10px) rotate(5deg); }
+    50% { transform: translate(0, -20px) rotate(0deg); }
+    75% { transform: translate(-10px, -10px) rotate(-5deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+/* Card Container */
+.card-container {
+    position: relative;
+    max-width: min(800px, 92%);
+    margin: 50px auto;
+    padding: clamp(1rem, 5vw, 3rem);
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    overflow: visible;
+}
+
+/* Typography */
+.title {
+    font-family: 'Aguafina Script', cursive;
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    color: #FF69B4;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5),
+                 -2px -2px 4px rgba(255, 105, 180, 0.3);
+    margin-bottom: 2rem;
+    animation: glow 2s ease-in-out infinite alternate;
+    line-height: 1.2;
+}
+
+.message {
+    font-family: 'Aguafina Script', cursive;
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    line-height: 1.6;
+    color: #4B0082;
+    white-space: pre-line;
+    margin-bottom: 2rem;
+    padding: 0 clamp(0.5rem, 3vw, 2rem);
+}
+
+/* Button Styles */
+.gallery-btn {
+    font-family: 'Aguafina Script', cursive;
+    font-size: clamp(1.2rem, 4vw, 1.8rem);
+    padding: clamp(0.8rem, 3vw, 1rem) clamp(1.5rem, 5vw, 2.5rem);
+    width: min(100%, 300px);
+    background: linear-gradient(45deg, #FF69B4, #87CEEB);
+    border: none;
+    border-radius: 50px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 2rem auto;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+.gallery-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.gallery-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.gallery-btn:hover::before {
+    left: 100%;
+}
+
+/* Hidden Gallery */
+div[style*="display: none"] {
+    position: absolute;
+    visibility: hidden;
+    pointer-events: none;
+    opacity: 0;
+}
+
+/* Gallery Styles */
+.gallery {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.gallery a {
+    text-decoration: none;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.gallery img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: block;
+}
+
+.gallery a:hover {
+    transform: scale(1.05);
+}
+
+/* Music Player */
+.music-player {
+    margin-top: 2rem;
+    max-width: min(300px, 90%);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Glow Animation */
+@keyframes glow {
+    from {
+        text-shadow: 0 0 5px #fff,
+                     0 0 10px #fff,
+                     0 0 15px #FF69B4,
+                     0 0 20px #FF69B4;
+    }
+    to {
+        text-shadow: 0 0 10px #fff,
+                     0 0 20px #fff,
+                     0 0 30px #FF69B4,
+                     0 0 40px #FF69B4;
+    }
+}
+
+/* Fancybox Customization */
+.fancybox__container {
+    --fancybox-bg: rgba(24, 24, 27, 0.95);
+    --fancybox-color: #fff;
+}
+
+.fancybox__content {
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+}
+
+.fancybox__caption {
+    font-family: 'Aguafina Script', cursive;
+    font-size: 1.5rem;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    margin-top: 1rem;
+}
+
+.fancybox__toolbar {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .card-container {
+        margin: 20px;
+        padding: 1rem;
+    }
+
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .message {
+        font-size: 1.4rem;
+    }
+
+    .gallery-btn {
+        font-size: 1.2rem;
+        padding: 0.8rem 1.6rem;
+    }
+
+    .fancybox__toolbar {
+        padding: max(0.5rem, var(--safe-area-inset-top));
+    }
+
+    .fancybox__nav {
+        padding: max(0.5rem, var(--safe-area-inset-left)) max(0.5rem, var(--safe-area-inset-right));
+    }
+
+    .fancybox__caption {
+        font-size: clamp(1.2rem, 4vw, 1.5rem);
+        padding: max(1rem, var(--safe-area-inset-bottom));
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) {
+    .gallery-btn:active {
+        transform: scale(0.98);
+    }
+}
+
+/* iPhone 14 and Newer Specific Styles */
+@media only screen and (min-device-width: 390px) and (max-device-width: 844px) and (-webkit-min-device-pixel-ratio: 3) {
+    .card-container {
+        margin: max(30px, var(--safe-area-inset-top)) auto;
+        width: 92%;
+    }
+
+    .title {
+        margin-top: max(10px, var(--safe-area-inset-top));
+    }
+
+    .fancybox__container {
+        --fancybox-toolbar-height: max(44px, var(--safe-area-inset-top));
+        --fancybox-padding: max(16px, var(--safe-area-inset-left));
+    }
+} 
