@@ -102,18 +102,15 @@ function openGallery() {
     Fancybox.show([
         {
             src: "assets/IMG_2137.jpg",
-            type: "image",
-            caption: "Family photo on the porch"
+            type: "image"
         },
         {
             src: "assets/IMG_3092.JPG",
-            type: "image",
-            caption: "Thanks for the hat mom!"
+            type: "image"
         },
         {
             src: "assets/IMG_3093.jpg",
-            type: "image",
-            caption: "Elijah felt out of this world halloween 2024"
+            type: "image"
         }
     ], {
         animated: true,
